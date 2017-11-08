@@ -13,12 +13,12 @@ namespace Sitecore.Support.Analytics.Rules.SegmentBuilder.Conditions
     {
       Assert.ArgumentNotNull(ruleContext, "ruleContext");
 
-      var contextItem = ruleContext.Item;
-      if (contextItem == null)
-      {
-        Log.Warn("Country condition ran without context item.", this);
-        return c => false;
-      }
+      //var contextItem = ruleContext.Item;
+      //if (contextItem == null)
+      //{
+      //  Log.Warn("Country condition ran without context item.", this);
+      //  return c => false;
+      //}
 
       var value = this.Value;
       if (string.IsNullOrEmpty(value))
@@ -26,7 +26,7 @@ namespace Sitecore.Support.Analytics.Rules.SegmentBuilder.Conditions
         return c => false;
       }
 
-      var item = contextItem.Database.GetItem(value);
+      var item = Context.Database.GetItem(value);
       if (item == null)
       {
         Log.Warn("Country not found in the item database: " + value, this);
