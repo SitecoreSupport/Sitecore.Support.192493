@@ -3,6 +3,7 @@ using System.Linq.Expressions;
 using Sitecore.Analytics.Rules.SegmentBuilder;
 using Sitecore.ContentSearch.Analytics.Models;
 using Sitecore.ContentSearch.Rules.Conditions;
+using Sitecore.Data;
 using Sitecore.Diagnostics;
 
 namespace Sitecore.Support.Analytics.Rules.SegmentBuilder.Conditions
@@ -26,7 +27,7 @@ namespace Sitecore.Support.Analytics.Rules.SegmentBuilder.Conditions
         return c => false;
       }
 
-      var item = Context.Database.GetItem(value);
+      var item = Database.GetDatabase("master").GetItem(value);
       if (item == null)
       {
         Log.Warn("Country not found in the item database: " + value, this);
